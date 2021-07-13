@@ -43,20 +43,37 @@ def build_controls():
             "rotate left": "cmd_rot_left",
             "rotate right": "cmd_rot_right"
             }
-    ctl_label = Label(master=controls_frame, text="Controls", font=fontStyle)
+    width = 4
+    font14 = tkfont.Font(family="Lucida Grande", size=14)
+    ctl_label = Label(master=controls_frame, text="Controls", font=font14)
     ctl_label.pack()
     ctl_button = []
-    for ckey in controls_list.keys():
-        ctl_button.append(Button(master=controls_frame, text=ckey, font=fontStyle))
+    ctl_sub_frame = []
+    prev = -1
+
+    for idx, ckey in enumerate(controls_list):
+        row = int(idx/width)
+        # print ("debug button rows. Row="+str(row)+", Column="+str(idx%width)+", Previous="+str(prev))
+        if row != prev:
+            if prev >= 0:
+                print(" ... pack row")
+                ctl_sub_frame[-1].pack(side=TOP, fill=X, expand=True)
+            # print("...Create new row")
+            ctl_sub_frame.append(Frame(master=controls_frame))
+        ctl_button.append(Button(master=ctl_sub_frame[row], text=ckey, font=font14))
         ctl_button[-1].pack(side=LEFT, padx=5, fill=X)
+        prev = row
+    ctl_sub_frame[-1].pack(side=TOP, fill=X, expand=True)
 
 
 def soft_buttons():
+    font14 = tkfont.Font(family="Lucida Grande", size=14)
     sk_button = []
     for skey in range(5):
         text_string = "Soft Key " + str(skey)
         sk_button.append(Button(master=sk_frame, text=text_string,
-                         command=lambda c=skey: onButtonClicked(c)))
+                         command=lambda c=skey: onButtonClicked(c),
+                         font=font14))
         sk_button[skey].pack()
 
 
@@ -88,10 +105,11 @@ def build_menubar():
 # top level window stuff...
 window = Tk()
 window.title("Quadbot Controls")
-window.geometry("350x350")
+window.geometry("450x450")
 build_menubar()
 
 fontStyle = tkfont.Font(family="Lucida Grande", size=18)
+print("Font Size: "+str(fontStyle.cget('size')))
 
 selected_leg = StringVar(window, "0")
 
