@@ -17,9 +17,13 @@ def leg_buttons():
 def build_sliders():
     # need 3 slider to control the position of each of the leg joints
     sl_dict = {0 : "coxa", 1 : "femur", 2: "tibia"}
+    slider_label = []
     slider = []
     for item in range(3):
-        slider.append(Scale(master=slider_frame, from_=0, to=100, variable=sl_dict[item]))
+        slider.append(Scale(master=slider_frame, from_=0, to=100, length=200
+            , variable=sl_dict[item]))
+        slider_label.append(Label(master=slider_frame, text = sl_dict[item]))
+        slider_label[item].pack(side=LEFT)
         slider[item].pack(side=LEFT, padx = 10)
 
 def build_controls():
