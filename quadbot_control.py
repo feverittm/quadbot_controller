@@ -26,19 +26,22 @@ def build_sliders():
         slider_label[item].pack(side=LEFT)
         slider[item].pack(side=LEFT, padx = 10)
 
+# need to create this as an array of 2x3 buttons and not just a linear list...
 def build_controls():
     controls_list = {
             "reset":"cmd_reset",
             "stand":"cmd_stand",
             "forward":"cmd_fwd",
-            "back":"cmd_back"
+            "back":"cmd_back",
+            "left":"cmd_left",
+            "right":"cmd_right"
             }
     ctl_label = Label(master=controls_frame, text="Controls", font=fontStyle)
     ctl_label.pack()
     ctl_button = []
     for ckey in controls_list.keys():
         ctl_button.append(Button(master=controls_frame, text=ckey, font=fontStyle))
-        ctl_button[-1].pack(side=LEFT, fill=X)
+        ctl_button[-1].pack(side=LEFT, padx=5, fill=X)
 
 def soft_buttons():
     sk_button = []
