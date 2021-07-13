@@ -32,12 +32,16 @@ def build_sliders():
 # need to create this as an array of 2x3 buttons and not just a linear list...
 def build_controls():
     controls_list = {
-            "reset": "cmd_reset",
+            "sit/reset": "cmd_reset",
             "stand": "cmd_stand",
-            "forward": "cmd_fwd",
-            "back": "cmd_back",
-            "left": "cmd_left",
-            "right": "cmd_right"
+            "walk forward": "cmd_fwd",
+            "walk back": "cmd_back",
+            "walk left": "cmd_left",
+            "walk right": "cmd_right",
+            "lean left": "cmd_lean_left",
+            "lean right": "cmd_lean_right",
+            "rotate left": "cmd_rot_left",
+            "rotate right": "cmd_rot_right"
             }
     ctl_label = Label(master=controls_frame, text="Controls", font=fontStyle)
     ctl_label.pack()

@@ -1,0 +1,4 @@
+set_site(0, site_now[0][0] + i, KEEP, KEEP);
+set_site(1, site_now[1][0] + i, KEEP, KEEP);
+set_site(2, site_now[2][0] - i, KEEP, KEEP);
+set_site(3, site_now[3][0] - i, KEEP, KEEP);
